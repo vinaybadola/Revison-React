@@ -1,5 +1,4 @@
-import React from 'react'
-
+import Auth from './auth'
 const CustomNavBar = () => {
   return (
     <nav className="navbar">
@@ -9,6 +8,7 @@ const CustomNavBar = () => {
         <a href="/create" 
         >New Blog</a>
       </div>
+      <Auth />
     </nav>
   )
 }

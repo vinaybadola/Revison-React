@@ -9,8 +9,8 @@ const BlogList = ({ blogs,title,handleDelete }) => {   // here we are destructur
             <div className="blog-preview" key={blog.id}>
                 <h2>{ blog.title }</h2>
                 <p>Written by { blog.author }</p>
-                <button onClick={ () => handleDelete(blog.id)}>Delete</button>
-            </div>
+                {handleDelete && <button onClick={() => handleDelete(blog.id)}>Delete</button>}
+                </div>
         ))};
       </div>
     </div>

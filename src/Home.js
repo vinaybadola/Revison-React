@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import BlogList from './Component/BlogList';
 
 const Home = () => {
@@ -29,6 +29,12 @@ const Home = () => {
     //      setAge(40);
     // };
 
+    const data = [
+        {'title' : "My name is Vinay", "id": 1}, 
+        {'title' : "My name is Vinay", "id": 2}, 
+        {'title' : "My name is Vinay", "id": 3}, 
+    ];
+
     const [blogs, setBlogs] = useState([
         { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
         { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
@@ -42,16 +48,20 @@ const Home = () => {
         setBlogs(newBlogs);
     };
 
+    useEffect( () =>{
+        console.log('use effect ran');
+    });
+
     return (
         <div className="home">
-           <BlogList blogs ={blogs} title ="All Blogs !"></BlogList>
-           <BlogList blogs ={blogs.filter((blog)=>blog.author === 'mario')} title ="Mario Blogs !" handleDelete ={handleDelete} ></BlogList>       { /*Here we are filtering the blogs based on the author name and passing it to the BlogList component it's reusable component. */ }
-           <BlogList blogs = {blogs} title = "All Blogs!" handleDelete = {handleDelete} ></BlogList> { /* Here we are passing the handleDelete function to the BlogList component. */ }
-            {/* <p> {name} </p>
+           <BlogList blogs ={blogs} title ="All Blogs !" />
+           <BlogList blogs ={blogs.filter((blog)=>blog.author === 'mario')} title ="Mario Blogs !" />       { /*Here we are filtering the blogs based on the author name and passing it to the BlogList component it's reusable component. */ }
+           <BlogList blogs = {blogs} title = "All Blogs!" handleDelete = {handleDelete} /> { /* Here we are passing the handleDelete function to the BlogList component. */ }
+            { /* <p> {name} </p>
             <p>Here is the changed name { name } </p>
             <p>Here is the age {age}</p>
             <button onClick={handleCLick}>Click Me </button>
-            <button onClick={ handleClickAGain }>Click Me Again</button> */}
+            <button onClick={ handleClickAGain }>Click Me Again</button> */ }
         </div>
         );
     }
