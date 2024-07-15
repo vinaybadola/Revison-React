@@ -12,7 +12,7 @@
 /build
 
 #secret keys
-/config/firebase-config.js
+/src/config/firebase-config.js
 
 # misc
 .DS_Store
