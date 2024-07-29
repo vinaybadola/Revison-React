@@ -29,34 +29,36 @@ const Home = () => {
     //      setAge(40);
     // };
 
-    const data = [
-        {'title' : "My name is Vinay", "id": 1}, 
-        {'title' : "My name is Vinay", "id": 2}, 
-        {'title' : "My name is Vinay", "id": 3}, 
-    ];
+    // const [blogs, setBlogs] = useState([
+    //     { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
+    //     { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
+    //     { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+    // ]);
 
-    const [blogs, setBlogs] = useState([
-        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
-    ]);
+    // Now we are going to set state using the useEffect hook. we fetch the data from db.json file and set the state using the useEffect hook.
+
+    const [blogs, setBlogs] = useState(null);
 
     const handleDelete = (id) => {
         const newBlogs = blogs.filter(blog => blog.id !== id);  // Here we are filtering the blogs based on the id and updating the state. 
-        console.log('only id', id);
-        console.log('newBlogs', blogs.id); 
+        console.log('only id', id); 
         setBlogs(newBlogs);
     };
 
     useEffect( () =>{
-        console.log('use effect ran');
-    });
+        const fetchData = async() => {
+        const data = await fetch('http://localhost:8000/blogs');
+        const paresedData = await data.json();
+        setBlogs(paresedData);
+    }
+    fetchData();
+        
+    },[blogs]); // Here we are using the useEffect hook to run the function when the blogs state changes.
 
     return (
         <div className="home">
-           <BlogList blogs ={blogs} title ="All Blogs !" />
-           <BlogList blogs ={blogs.filter((blog)=>blog.author === 'mario')} title ="Mario Blogs !" />       { /*Here we are filtering the blogs based on the author name and passing it to the BlogList component it's reusable component. */ }
-           <BlogList blogs = {blogs} title = "All Blogs!" handleDelete = {handleDelete} /> { /* Here we are passing the handleDelete function to the BlogList component. */ }
+           { blogs && <BlogList blogs ={blogs.filter((blog)=>blog.author === 'mario')} title ="Mario Blogs !" />   }    { /*Here we are filtering the blogs based on the author name and passing it to the BlogList component it's reusable component. */ }
+           { blogs && <BlogList blogs = {blogs} title = "All Blogs!" handleDelete = {handleDelete} /> } { /* Here we are passing the handleDelete function to the BlogList component. */ }
             { /* <p> {name} </p>
             <p>Here is the changed name { name } </p>
             <p>Here is the age {age}</p>
