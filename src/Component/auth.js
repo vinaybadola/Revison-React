@@ -31,7 +31,7 @@ const Auth = () => {
   return (
     <div className="auth-class">
       <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-        <input placeholder="Password" type = "password"  onChange={(e) =>setPassword(e.target.value)}/>
+        <input placeholder="Password" type = "password"  onChange={(e) =>setPassword(e.target.value)} autoComplete=''/>
         <button onClick={SignIn}>Sign In</button>
 
         <button onClick={ signInWithGoogle}>Sign In With Google</button>
