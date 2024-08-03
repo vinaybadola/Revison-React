@@ -1,0 +1,42 @@
+.auth-button{
+    position: relative;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(66,34,244);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    left: 78rem;
+}
+
+.google-image{
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+.welcome-class{
+    position: relative;
+    left: 73rem;
+    color: blueviolet;
+    text-decoration: underline;
+    width: fit-content;
+}
+
+.auth-logout{
+    color: white;
+    background-color: rgb(66,34,244);
+    width: 4rem;
+    position: relative;
+    border: none;
+    padding: 11px;
+    left: 22px;
+    cursor: pointer;
+}
+.auth-logout:hover{
+    background-color: white;
+    color: rgb(66,34,244);
+    border: 1px solid rgb(66,34,244);
+}
